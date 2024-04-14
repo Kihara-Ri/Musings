@@ -75,7 +75,7 @@ cat /sys/class/power_supply/BAT1/capacity
 --> 100
 ```
 
-Just a heads-up, I used the double quotes `“”` instead of the quotes `‘’` so that I can take advantage of the backslash `\` feature, and specifically I use `\n` to perform a newline operation.
+Just a heads-up, I used the double quotes `""` instead of the quotes `''` so that I can take advantage of the backslash `\` feature, and specifically I use `\n` to perform a newline operation.
 
 
 
