@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 1000px; /* 可以根据你的需要调整宽度 */
+    margin: 20px auto; /* 上下边距20px，左右自动居中 */
+    padding: 20px;
+    box-sizing: border-box;
+    border-left: 2px solid #ccc;
+    border-right: 2px solid #ccc;
+    background-color: #fff; /* 如果需要，可以设置背景颜色 */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #4465de;
+}
+
+p {
+    margin: 0.5em 0;
+}
+

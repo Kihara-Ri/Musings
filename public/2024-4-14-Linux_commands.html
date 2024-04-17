@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="linux-commands">Linux Commands</h1>
+        <h2 id="preface">Preface</h2>
+        <p>If you want to be efficient when you are working with Linux operating system, using Linux commands lines proficiently is really necessary. You may think that wtf there are so many Linux commands with countless parameters and it’s almost impossible for you to remember all of those. In fact, if we just make good categorization and look up to the <strong>manual</strong>, that won’t be a really tough job.</p>
+        <h2 id="start">Start</h2>
+        <p>There have been so many sites and curriculums on the Internet for you to search, so if you are stuck, Google search usually does the trick.</p>
+        <p>Common commands</p>
+        <ul>
+        <li>File managing: <code>cd</code>, <code>pwd</code>, <code>mkdir</code>, <code>rmdir</code>, <code>ls</code>, <code>cp</code>, <code>rm</code>, <code>mv</code>, <code>tar</code></li>
+        <li>Data wrangling: <code>cat</code>, <code>more</code>, <code>less</code>, <code>head</code>, <code>tail</code>, <code>file</code>, <code>find</code></li>
+        <li>IO: pipe<code>|</code>, redirect, <code>tee</code>, <code>xargs</code></li>
+        <li>Text operating: <code>vim</code>, <code>grep</code>, <code>awk</code>, <code>sed</code>, <code>sort</code>, <code>wc</code>, <code>uniq</code>, <code>cut</code>, <code>tr</code></li>
+        <li>Regex</li>
+        <li>System monitoring: <code>jobs</code>, <code>ps</code>, <code>top</code>, <code>kill</code>, <code>free</code>, <code>dmesg</code>, <code>lsof</code>, <code>df</code></li>
+        </ul>
+        <hr />
+        <p><code>ls</code>, with some arguments <code>-l</code>, <code>-a</code>, <code>-h</code> used a lot.</p>
+        <p><code>file</code>, tells you the kind certain data is. In Linux, everything is a file so you can detect anything using this command.</p>
+        <p><code>less</code> to look up the texts.</p>
+        <p><code>mkdir</code> to make a new directory, <code>make directory</code></p>
+        <p><code>&gt;</code>, if you straightly use this to link files, you’ll redirect the following content in to this file, but you should notice that <code>&gt;</code> would do <strong>overwrite</strong> operation, and the existing content would be deleted.</p>
+        <p><code>&gt;&gt;</code>, if you want to append something, you’re going to use this.</p>
+        <p><code>&lt;</code>: you receive the data.</p>
+        <hr />
+        <p><code>type</code>: Used to get to know other commands</p>
+        <p>Some tough cases may be the following commands:</p>
+        <ul>
+        <li><code>grep</code></li>
+        <li><code>sed</code></li>
+        <li><code>sort</code></li>
+        </ul>
+        <h2 id="a-little-challenge">A little challenge</h2>
+        <p>This is a little challenge from the missing semester of MIT <a href="https://missing-semester-cn.github.io/2020/course-shell/">Lecture 1: Course Overview + The Shell</a></p>
+        <ol type="1">
+        <li>Create a new directory called <code>missing</code> under <code>/tmp</code>.</li>
+        <li>Look up the <code>touch</code> program.</li>
+        <li>Use <code>touch</code> to create a new file called <code>semester</code> in <code>missing</code>.</li>
+        <li><code>Write</code> the following into that file, one line at a time:</li>
+        </ol>
+        <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">#!/bin/sh</span></span>
+        <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="ex">curl</span> --head --silent https://missing.csail.mit.edu</span></code></pre></div>
+        <ol start="5" type="1">
+        <li>Try to execute the file, i.e. type the path to the script (<code>./semester</code>) into your shell and press enter.</li>
+        <li>Use <code>|</code> and <code>&gt;</code> to write the “last modified” date output by <code>semester</code> into a file called <code>last-modified.txt</code> in your home directory.</li>
+        <li>Write a command that reads out your laptop battery’s power level or your desktop machine’s CPU temperature from <code>/sys</code>.</li>
+        </ol>
+        <p>My operation:</p>
+        <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="fu">mkdir</span> /tmp/missing</span>
+        <span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="fu">touch</span> /tmp/missing/semester <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> /tmp/missing/</span>
+        <span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="bu">echo</span> <span class="st">&quot;#\!/bin/sh\ncurl --head --silent https://missing.csail.mit.edu&quot;</span> <span class="op">&gt;</span> semester</span>
+        <span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="fu">chmod</span> +x semester</span>
+        <span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="fu">ls</span> -l <span class="va">$_</span></span>
+        <span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="ex">./semester</span> <span class="kw">|</span> <span class="fu">grep</span> last-modified <span class="op">&gt;</span> last-modified.txt</span>
+        <span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="ex">--</span><span class="op">&gt;</span> last-modified: Sat, 02 Mar 2024 14:52:48 GMT</span>
+        <span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a></span>
+        <span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="fu">cat</span> /sys/class/power_supply/BAT1/capacity</span>
+        <span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="ex">--</span><span class="op">&gt;</span> 100</span></code></pre></div>
+        <p>Just a heads-up, I used the double quotes <code>“”</code> instead of the quotes <code>‘’</code> so that I can take advantage of the backslash <code>\</code> feature, and specifically I use <code>\n</code> to perform a newline operation.</p>
+    </div>
+</body>
+</html>

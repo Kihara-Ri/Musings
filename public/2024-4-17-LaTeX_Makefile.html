@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="using-latex-to-make-graphs">Using LaTeX to make graphs</h1>
+        <p>I have been using a bunch of graphing tools, but most of them have some drawbacks and sometimes can hardly meet my needs. For example, Sometimes I’d like to use <code>mermaid</code> to make a flowchart or simple graph with code, but you know, this guy doesn’t support moving and editing the position of the nodes. And I often use <code>Excalidraw</code> to draw some relationship diagrams or some shapes, but it doesn’t support the logic operation and you can hardly make an irregular shape or just some a little bit complexer shape.</p>
+        <p>So, now I’m trying to use LaTeX, which supports a lot of syntax and features.</p>
+        <p>We use the <code>TikZ</code> package to draw pictures, and in fact, what it can do is just forming a PDF file, so we have to convert it to PNG with another tool.</p>
+        <h2 id="install-required-packages">Install Required Packages</h2>
+        <p>We need to install LaTeX and ImageMagick, which includes tools like <code>pdflatex</code> and <code>convert</code>. In Ubuntu</p>
+        <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">sudo</span> apt update</span>
+        <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="fu">sudo</span> apt install texlive texlive-pictures texlive-latex-extra imagemagick</span></code></pre></div>
+        <p>Waiting for its completion.</p>
+        <h2 id="create-a-makeflie">Create a Makeflie</h2>
+        <p>Write a Makefile to automate the compliation process. So we have to let the compiler know what to do. We get the rules here:</p>
+        <div class="sourceCode" id="cb2"><pre class="sourceCode makefile"><code class="sourceCode makefile"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co"># 如果没有指定文件，默认使用 example.tex</span></span>
+        <span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="dt">FILE </span><span class="ch">?=</span><span class="st"> example.tex</span></span>
+        <span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
+        <span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co"># 提取文件名，不包含扩展名</span></span>
+        <span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="dt">BASENAME </span><span class="ch">=</span><span class="st"> </span><span class="ch">$(</span><span class="kw">basename</span><span class="st"> </span><span class="ch">$(</span><span class="dt">FILE</span><span class="ch">))</span></span>
+        <span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
+        <span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="dv">all:</span><span class="dt"> </span><span class="ch">$(</span><span class="dt">BASENAME</span><span class="ch">)</span><span class="dt">.png</span></span>
+        <span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a></span>
+        <span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="dv">$(BASENAME).pdf:</span><span class="dt"> </span><span class="ch">$(</span><span class="dt">FILE</span><span class="ch">)</span></span>
+        <span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>        pdflatex <span class="ch">$(</span><span class="dt">FILE</span><span class="ch">)</span></span>
+        <span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a></span>
+        <span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="dv">$(BASENAME).png:</span><span class="dt"> </span><span class="ch">$(</span><span class="dt">BASENAME</span><span class="ch">)</span><span class="dt">.pdf</span></span>
+        <span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>        convert -density 300 <span class="ch">$(</span><span class="dt">BASENAME</span><span class="ch">)</span>.pdf -quality 90 <span class="ch">$(</span><span class="dt">BASENAME</span><span class="ch">)</span>.png</span>
+        <span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a></span>
+        <span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="dv">clean:</span></span>
+        <span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>        rm -f <span class="ch">$(</span><span class="dt">BASENAME</span><span class="ch">)</span>.pdf <span class="ch">$(</span><span class="dt">BASENAME</span><span class="ch">)</span>.aux <span class="ch">$(</span><span class="dt">BASENAME</span><span class="ch">)</span>.log</span>
+        <span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a></span>
+        <span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a><span class="ot">.PHONY:</span><span class="dt"> all clean</span></span></code></pre></div>
+        <p>If you type <code>make</code> in command line, you will get a bunch of intermediate files, you can take the <code>tex</code> file as an example. But you should notice that you cannot get the PNG file here because the compiler will warn you the permission problem.</p>
+        <p>You should modify the rule manually to permit the generation of PNG.</p>
+        <div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="fu">sudo</span> vim /etc/ImageMagick-6/policy.xml</span></code></pre></div>
+        <p>And find the line:</p>
+        <div class="sourceCode" id="cb4"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="st">- &lt;policy domain=&quot;coder&quot; rights=&quot;none&quot; pattern=&quot;PDF&quot; /&gt;</span></span>
+        <span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="va">+ &lt;policy domain=&quot;coder&quot; rights=&quot;read|write&quot; pattern=&quot;PDF&quot; /&gt;</span></span></code></pre></div>
+        <p>Now there is no problem with generating a PNG file.</p>
+        <ul>
+        <li>Using <code>make</code> to defaultly generate a PNG file.</li>
+        <li>Using <code>make clean</code> to remove the intermediate files.</li>
+        </ul>
+        <h2 id="tex-file">Tex file</h2>
+        <p>Here is an example of a Tex file:</p>
+        <div class="sourceCode" id="cb5"><pre class="sourceCode tex"><code class="sourceCode latex"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="bu">\documentclass</span>{<span class="ex">standalone</span>}</span>
+        <span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a></span>
+        <span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="bu">\usepackage</span>{<span class="ex">tikz</span>}</span>
+        <span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="fu">\usetikzlibrary</span>{automata, positioning, arrows, calc}</span>
+        <span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a></span>
+        <span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="fu">\tikzset</span>{</span>
+        <span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a>    -&gt;,  <span class="co">% makes the edges directed</span></span>
+        <span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a>    &gt;=stealth, <span class="co">% makes the arrow heads bold</span></span>
+        <span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>    shorten &gt;=2pt, shorten &lt;=2pt, <span class="co">% shorten the arrow</span></span>
+        <span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>    node distance=3cm, <span class="co">% specifies the minimum distance between two nodes. Change if n</span></span>
+        <span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a>    every state/.style={draw=blue!55,very thick,fill=blue!20}, <span class="co">% sets the properties for each ’state’ n</span></span>
+        <span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a>    initial text=<span class="ss">$ $</span>, <span class="co">% sets the text that appears on the start arrow</span></span>
+        <span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a> }</span>
+        <span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a></span>
+        <span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+        <span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a>    <span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}</span>
+        <span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a>        <span class="fu">\node</span>[state with output,accepting, initial] (s0) {<span class="ss">$S_0$</span> <span class="fu">\nodepart</span>{lower} <span class="ss">$0$</span>};</span>
+        <span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a>        <span class="fu">\node</span>[state with output, right of=s0] (s1) {<span class="ss">$S_1$</span> <span class="fu">\nodepart</span>{lower} <span class="ss">$1$</span>};</span>
+        <span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a>        <span class="fu">\node</span>[state with output, right of=s1] (s2) {<span class="ss">$S_2$</span> <span class="fu">\nodepart</span>{lower} <span class="ss">$2$</span>};</span>
+        <span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a>        <span class="fu">\node</span>[state with output, right of=s2] (s3) {<span class="ss">$S_3$</span> <span class="fu">\nodepart</span>{lower} <span class="ss">$3$</span>};</span>
+        <span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a>        <span class="fu">\node</span>[state with output, right of=s3] (s4) {<span class="ss">$S_4$</span> <span class="fu">\nodepart</span>{lower} <span class="ss">$4$</span>};</span>
+        <span id="cb5-22"><a href="#cb5-22" aria-hidden="true"></a>        <span class="fu">\node</span>[state with output, right of=s4] (s5) {<span class="ss">$S_i$</span><span class="fu">\nodepart</span>{lower} <span class="ss">$</span><span class="sc">\cdots</span><span class="ss">$</span>};</span>
+        <span id="cb5-23"><a href="#cb5-23" aria-hidden="true"></a>        </span>
+        <span id="cb5-24"><a href="#cb5-24" aria-hidden="true"></a>        <span class="fu">\draw</span> <span class="co">%(s0) edge[loop above] node{$0$} (s0)</span></span>
+        <span id="cb5-25"><a href="#cb5-25" aria-hidden="true"></a>              (s0) edge[bend left] node[above]{<span class="ss">$</span><span class="sc">\lambda</span><span class="ss">$</span>} (s1)</span>
+        <span id="cb5-26"><a href="#cb5-26" aria-hidden="true"></a>              <span class="co">%</span></span>
+        <span id="cb5-27"><a href="#cb5-27" aria-hidden="true"></a>              (s1) edge[bend left] node[above]{<span class="ss">$</span><span class="sc">\lambda</span><span class="ss">$</span>} (s2)</span>
+        <span id="cb5-28"><a href="#cb5-28" aria-hidden="true"></a>              (s1) edge[bend left] node[above]{<span class="ss">$</span><span class="sc">\mu</span><span class="ss">$</span>} (s0)</span>
+        <span id="cb5-29"><a href="#cb5-29" aria-hidden="true"></a>              <span class="co">%</span></span>
+        <span id="cb5-30"><a href="#cb5-30" aria-hidden="true"></a>              (s2) edge[bend left] node[above]{<span class="ss">$</span><span class="sc">\lambda</span><span class="ss">$</span>} (s3)</span>
+        <span id="cb5-31"><a href="#cb5-31" aria-hidden="true"></a>              (s2) edge[bend left] node[above]{<span class="ss">$</span><span class="sc">\mu</span><span class="ss">$</span>} (s1)</span>
+        <span id="cb5-32"><a href="#cb5-32" aria-hidden="true"></a>              <span class="co">%</span></span>
+        <span id="cb5-33"><a href="#cb5-33" aria-hidden="true"></a>              (s3) edge[bend left] node[above]{<span class="ss">$</span><span class="sc">\lambda</span><span class="ss">$</span>} (s4)</span>
+        <span id="cb5-34"><a href="#cb5-34" aria-hidden="true"></a>              (s3) edge[bend left] node[above]{<span class="ss">$</span><span class="sc">\mu</span><span class="ss">$</span>} (s2)</span>
+        <span id="cb5-35"><a href="#cb5-35" aria-hidden="true"></a>              <span class="co">%</span></span>
+        <span id="cb5-36"><a href="#cb5-36" aria-hidden="true"></a>              (s4) edge[bend left] node[above]{<span class="ss">$</span><span class="sc">\lambda</span><span class="ss">$</span>} (s5)</span>
+        <span id="cb5-37"><a href="#cb5-37" aria-hidden="true"></a>              (s4) edge[bend left] node[above]{<span class="ss">$</span><span class="sc">\mu</span><span class="ss">$</span>} (s3)</span>
+        <span id="cb5-38"><a href="#cb5-38" aria-hidden="true"></a>              <span class="co">%</span></span>
+        <span id="cb5-39"><a href="#cb5-39" aria-hidden="true"></a>              (s5) edge[bend left] node{<span class="ss">$</span><span class="sc">\mu</span><span class="ss">$</span>} (s4)</span>
+        <span id="cb5-40"><a href="#cb5-40" aria-hidden="true"></a>        ;</span>
+        <span id="cb5-41"><a href="#cb5-41" aria-hidden="true"></a>    <span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span>
+        <span id="cb5-42"><a href="#cb5-42" aria-hidden="true"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code></pre></div>
+    </div>
+</body>
+</html>
