@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# 检查是否有参数
+if [ -z "$1" ]; then
+    echo "Usage: $0 <filename>"
+    exit 1
+fi
+
+# 构造文件名
+filename=$(date "+%Y-%m-%d")-$1.md
+# 创建文件
+touch "$filename"
+echo "已创建markdown: $filename"
