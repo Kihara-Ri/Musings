@@ -10,4 +10,5 @@ fi
 filename=$(date "+%Y-%m-%d")-$1.md
 # 创建文件
 touch "$filename"
+echo "# $(date "+%Y-%m-%d")-$1" > $filename
 echo "已创建markdown: $filename"

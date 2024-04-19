@@ -1,0 +1,7 @@
+# 2024-04-19-frustrations in interests
+
+I've found I'm the kind of person who is just engaged in things that intriggles my interest and often get addicted in it. When I get the passion, I would be able to work for hours, even for several hours. I know this is a gift for me only if I'm doing what I really like.
+
+But sometimes you know as a student, a worker, a person, you gotta do a bunch of things that you don't really like, and you have to endure everything. This is not something you should blame, cause the world and our life is like this. So it makes me feel distress when I have to do things that I don't like to do. What even more distress is that anything that you like to do contains things you don't like to do, so what you want to do may be just a small part of the certain thing.
+
+You may have seen that some people show really cool skills and you just see the surface and you tried to intimate what other people do, and you got to find that something really difficult, tedious and boring. Then you gave up or find other thing of interest to do. Most of us don't get a lot of skills and talents, and we often rely on just one or two skills to live, and may not really get a talent on this. So when I see someone with superb skills, I believe they are very hardworking and have overcome their inherent laziness.
