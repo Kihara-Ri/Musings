@@ -1,5 +1,7 @@
 # Musings
 
+目前我已经写了：| **3310** | 字
+
 A respository for musings, all in English.
 
 Musings about daily life, art works, films, books, etc. All kinds of thoughts.
