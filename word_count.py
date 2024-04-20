@@ -6,10 +6,9 @@
 cp pre-commit.sample pre-commit
 并在其中添加下面这一条命令：
 find ~/Documents ~/Downloads ~/Desktop -path '*/Musings/word_count.py' | xargs python
-find ~/Documents ~/Downloads ~/Desktop -path '*/Musings/word_count.py' | xargs python
 寻找这个脚本文件路径的方法：
-使用正则表达式: find ~/Documents ~/Downloads ~/Desktop -path '*/Musings/word_count.py'
-寻找两次: find ~/Documents ~/Downloads ~/Desktop -name "Musings" -exec find {} -type f -name "word_count.py" \;
+1. 使用正则表达式: find ~/Documents ~/Downloads ~/Desktop -path '*/Musings/word_count.py'
+2. 寻找两次: find ~/Documents ~/Downloads ~/Desktop -name "Musings" -exec find {} -type f -name "word_count.py" \;
 '''
 import os
 import sys
