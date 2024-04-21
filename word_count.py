@@ -14,12 +14,28 @@ import os
 import sys
 import re
 import subprocess
+import platform
+
+def detect_os():
+    system = platform.system()
+    if system == 'Darwin':
+        return "macOS"
+    elif system == 'Linux':
+        return "Linux"
+    else:
+        return "未知操作系统"
 
 # 跳转到目标目录，前提是该目录名称在目标文件夹下只能有一个，否则只会跳转到第一个
 def change_dir(target: str):
     try:
         # 使用find命令找到目标目录
-        find_command = f"find ~/Documents ~/Downloads ~/Desktop -type d -name {target}"
+        if detect_os() == "macOS":
+            find_command = f"find ~/Documents ~/Downloads ~/Desktop -type d -name {target}"
+        elif detect_os() == "Linux":
+            find_command = f"find ~ -type d -name {target}"
+        else:
+            return sys.exit(1)
+
         result = subprocess.run(find_command, capture_output = True, text = True, shell = True)
         if result.returncode != 0:
             print("命令执行出错:")
