@@ -136,7 +136,7 @@ grep -r -l "English" .
 Ignore case (uppercase and lowercase of letter) with `-i`
 
 ```bash
-grep -r -l -i "englisha" .
+grep -r -l -i "english" .
 ```
 
 Find some files of specialized form, using `--include`:

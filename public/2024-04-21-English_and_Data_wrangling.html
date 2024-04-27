@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="about-english">About English</h1>
+        <p>I just finished my TOEFL voabulary on a whim, with the total words of 4882 and I spent 7429 min in total to complete that. The TOEFL vocabulary feels very formal to me, and it’s hard to use these words in everyday life, and moreover I am a perfectionist by nature, so not being familiar with these words makes it difficult for me to use them in conversation, which makes me very frustrated. TOEFL needs you to be a fluent speaker and think of things like a native speaker. During the test, you are only given several seconds to organize your answer, and you talk, without pausing. Which is really difficult for me as I cannot even make it in my mother tongue. I’m the kind of person who always try to compose a sentence with formal vocabulary, so sometimes when I cannot come up with the correct word I’m going to say, I usually stand still speaking nothing. So I wonder if there really exists people like Seldon in <em>The Big Bang Theory</em>?</p>
+        <p>Therefore, I will soon start studying for the IELTS to be able to express myself in authentic English. From now, I’m gonna record some native or natural expressions:</p>
+        <ul>
+        <li><strong>Planet of Solar System</strong> in order from nearest to farthest: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune.</li>
+        <li><strong>Summer Triangle</strong> known as the 夏の大三角形: Altair(アルタイル), Deneb(デネブ) and Vega(ベガ)</li>
+        <li><strong>bosom</strong>: The bosom, a small waist, and generous hips, and this was the prized look of the victorian time (and so does now). She cradles me in her bosom.</li>
+        <li><strong>benign</strong>: If you want to say that a person is good and don’t do bad things, do not simply say good or kind, just say a benign person. And you can also use like this: a benign smile, a benign weather. And perhaps she was able to detect benign people from dangerous people.</li>
+        <li><strong>balm</strong>: This word is not usually used by male cause we hardly use these things. One sentence to remember this word: When I feel my lips are dry and cracked, I would wear lip balm.</li>
+        <li><strong>myopic</strong>: The rate of myopia in Chinese primary and secondary schools is very high.</li>
+        <li><strong>salon</strong>: When you gotta get your hair cut, you’d go to the hair salon.</li>
+        <li><strong>thaw</strong>: Temperatures have been rising for years, causing the ice to thaw. Thaw is mainly used to describe the process of something frozen becoming soft or liquid as a result in temperature, related to weather or cooking. Melt can be used more broadly like butter, chocolate or metal.</li>
+        <li><strong>far-fetched</strong>: It does sound a bit far-fetched. You can use this word as a substitute for unbelievable.</li>
+        <li><strong>antagonist</strong>: Synonyms of opponent, rival, competitor.</li>
+        <li><strong>quench</strong>: Once they’ve quenched their thirst, the next priority is food. Quench your thirst.</li>
+        <li><strong>executive</strong>: CEO(Chief Executive Officer), CFO(Chief Financial Officer), COO(Chief Operating Officer). Senior executive, executive car.</li>
+        <li><strong>instructor</strong>: Someone who teacher or educates others, typically in s specific subject or skill. And the lowest level teacher in university is called instructor. A driving instructor.</li>
+        <li><strong>converse</strong>: When you talk to someone, you better use converse with someone.</li>
+        <li><strong>perceive</strong>: The face is a large part of how people perceive you during interactions. If you want to say how you think of someone or something, you can use perceive. She perceived a faint smell of coffee in the air. He perceived that she was unhappy, even though she didn’t say anything(空気読み). Voters perceive him as a strong leader, although his policies have been controversial.</li>
+        <li><strong>conceive</strong>: I cannot conceive of a life without you.</li>
+        <li><strong>diction</strong>: Diction is the biggest problem of my English. It typically considers: level of formality, precision and clarity, tone and atmosphere, characterization</li>
+        <li><strong>glaze</strong>: He explains his ideas in agonizing detail until everyone’s eyes glaze over.</li>
+        </ul>
+        <p>One finding of English. We often mock the Japanese people pronounce English. For example <em>swing</em>, Japanese pronounce スウィング with g pronounced with グ. Well that sounds a little ridiculous for us Chinese becuause we assume that the <code>g</code> here is silent. The fact is that when American people pronounce the single word swing, they pronounce the <code>g</code>.</p>
+        <p>What’s the difference between checked shirts and plaid shirts?</p>
+        <blockquote>
+        <p>Plaids and checks. These two words often show up together, but they are not actually interchangeable. They refer to different types of patterns. Before we get into the differences between a plaid and a check, it’s important to know that both words traditionally describe a woven cloth. Plaids and checks are both designs historically made as woven cloth. And to understand woven cloth patterns, you need to know the basics about weaving. Weaving is a preocess of creating fabric by interlacing two yarn systems, the warp and the weft. The warp yarns run lengthwise through a fabric and are wound onto a loom and held under tension. The weft yarns are pu in one at a time by a weaver, crosswise through the fabric. The two yarn systems interlace at right angles to each other. The weaving process is the same, whether done by a person sitting at a loom or by a mechanized loom. Many fabrics are woven on a solid color warp, but plaids and checks are both made on a warp with a stripe pattern. The strip pattern for the warp contains varying different color threads and different size stripes. In plaids and checks, the stripe patern is not random across the warp’s width but has a regular, repeating pattern. Likewise, the weft yarns are also in a stripe pattern of different colors and sizes. The difference between plaids and checks lies in these repeating patterns. Checks are two colors and have the same stripe pattern in the warp and the weft. The finished cloth is always symmetrical. Plaids have more than two colors and more variety in their stripe layouts.</p>
+        </blockquote>
+        <p>So, to conclusion, the stereotype of shirts weared by programmers is actually plaids.</p>
+        <h1 id="about-data-wrangling">About data wrangling</h1>
+        <p>I just suddenly came out of some functions implemented by command line.</p>
+        <h2 id="find">find</h2>
+        <p>I want to find files that end with <code>.mkv</code> and calculate the sum of disk space they occupies:</p>
+        <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">find</span> . -type f -name <span class="st">&quot;*.mkv&quot;</span> -exec du -ch {} <span class="ex">+</span> <span class="kw">|</span> <span class="fu">grep</span> total$</span></code></pre></div>
+        <p>This command is quite complicated, let’s analyise the parts:</p>
+        <ul>
+        <li><code>exec du -ch {} +</code>, for every found file, execute command <code>du</code>, short for “disk usage”, <code>-ch</code> means “cumulative” and “human-readable”, “cumulative” tells <code>du</code> to output the total size of all specified files after processing. <code>{}</code> is a placeholder. The <code>find</code> command replaces this with the path of each found file. <code>+</code> ends the list of parameters for the <code>-exec</code> command and tells the <code>find</code> to pass all found files to the <code>du</code> at once, rather than invoking <code>du</code> for each file found. This improves efficiency since <code>du</code> is launched only once, not multiple times.</li>
+        <li>And then we pass the calculated size to command <code>grep</code> with a pipe. The <code>grep</code> do <code>grep total$</code>, which means you just want to see the total size, rahter than sizes of other single files, so this is a filter. <code>total$</code> is just a special symbol in regular expressions representing the end of a line. So this means I just want the on line that ends up with <code>total</code>.</li>
+        </ul>
+        <p>This command is a little bit abstract to understand, let’s make a simple experiment.</p>
+        <p>First, I <code>touch</code> 10 files that end with <code>.mkv</code>, and <code>find . -type f -name "*.mkv"</code> to find them:</p>
+        <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>$ <span class="fu">touch</span> <span class="dt">{1..10}</span>.mkv</span>
+        <span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
+        <span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>$ <span class="fu">find</span> . -type f -name <span class="st">&quot;*.mkv&quot;</span></span>
+        <span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
+        <span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="ex">./1.mkv</span></span>
+        <span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="ex">./9.mkv</span></span>
+        <span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="ex">./7.mkv</span></span>
+        <span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="ex">./8.mkv</span></span>
+        <span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="ex">./6.mkv</span></span>
+        <span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="ex">./2.mkv</span></span>
+        <span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="ex">./3.mkv</span></span>
+        <span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="ex">./5.mkv</span></span>
+        <span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="ex">./10.mkv</span></span>
+        <span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="ex">./4.mkv</span></span></code></pre></div>
+        <p>The I calculate their size:</p>
+        <div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>$ <span class="fu">find</span> . -type f -name <span class="st">&quot;*.mkv&quot;</span> -exec du -ch {} <span class="ex">+</span></span>
+        <span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
+        <span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="ex">0</span>       ./1.mkv</span>
+        <span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="ex">0</span>       ./9.mkv</span>
+        <span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="ex">0</span>       ./7.mkv</span>
+        <span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="ex">0</span>       ./8.mkv</span>
+        <span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="ex">0</span>       ./6.mkv</span>
+        <span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="ex">0</span>       ./2.mkv</span>
+        <span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="ex">0</span>       ./3.mkv</span>
+        <span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="ex">0</span>       ./5.mkv</span>
+        <span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="ex">0</span>       ./10.mkv</span>
+        <span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="ex">0</span>       ./4.mkv</span>
+        <span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="ex">0</span>       total</span></code></pre></div>
+        <p>With a filter:</p>
+        <div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>$ <span class="fu">find</span> . -type f -name <span class="st">&quot;*.mkv&quot;</span> -exec du -ch {} <span class="ex">+</span> <span class="kw">|</span> <span class="fu">grep</span> total$</span>
+        <span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="ex">0</span>       total # highlighted</span></code></pre></div>
+        <p>And you can see that <code>total</code> is highlighted.</p>
+        <h2 id="clipboard">clipboard</h2>
+        <p>If you want to copy your output of your command, you can use <code>xclip</code>. Seems you gotta intall it with apt:</p>
+        <div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="fu">sudo</span> apt install xclip</span></code></pre></div>
+        <p>Using:</p>
+        <div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="ex">your-command</span> <span class="kw">|</span> <span class="ex">xclip</span> -selection clipboard</span></code></pre></div>
+        <p>And you will get the output in your clipboard, which is quite convenient when you want to use this as one more input.</p>
+        <p>You can also use <code>$(!!)</code> to execute your last command again:</p>
+        <div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$(</span>!!<span class="va">)</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="ex">xclip</span> -selection clipboard</span></code></pre></div>
+        <h2 id="grep">grep</h2>
+        <p><code>grep</code> is a very powerful tool for text search. If you want to searh files that contains “English”, and you just need to know the file name, you can use this command:</p>
+        <div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="fu">grep</span> -l <span class="st">&quot;English&quot;</span> *</span></code></pre></div>
+        <p>Recursively in current directory:</p>
+        <div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="fu">grep</span> -r -l <span class="st">&quot;English&quot;</span> .</span></code></pre></div>
+        <p>Ignore case (uppercase and lowercase of letter) with <code>-i</code></p>
+        <div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="fu">grep</span> -r -l -i <span class="st">&quot;englisha&quot;</span> .</span></code></pre></div>
+        <p>Find some files of specialized form, using <code>--include</code>:</p>
+        <div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="fu">grep</span> -r -l -i --include=<span class="st">&quot;*.md&quot;</span> <span class="st">&quot;english&quot;</span> .</span></code></pre></div>
+    </div>
+</body>
+</html>
