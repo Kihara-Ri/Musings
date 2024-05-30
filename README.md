@@ -1,6 +1,6 @@
 # Musings
 
-目前我已经写了：| **6724** | 字
+目前我已经写了：| **6964** | 字
 
 A respository for musings, all in English.
 
